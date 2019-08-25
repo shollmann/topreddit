@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".ItemListActivity"
+            android:name=".ui.toplist.ItemListActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -25,11 +25,11 @@
         <activity
             android:name=".ItemDetailActivity"
             android:label="@string/title_item_detail"
-            android:parentActivityName=".ItemListActivity"
+            android:parentActivityName=".ui.toplist.ItemListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.shollmann.topreddit.ItemListActivity" />
+                android:value="com.shollmann.topreddit.ui.toplist.ItemListActivity" />
         </activity>
     </application>
 

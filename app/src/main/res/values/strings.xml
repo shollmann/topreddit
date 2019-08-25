@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">Top Reddit</string>
     <string name="title_item_detail">Item Detail</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="author_and_time_ago">Posted by %1$s - %2$s</string>
+    <string name="time_just_now">Just now</string>
+    <string name="time_one_min_ago">1m ago</string>
+    <string name="time_one_hour_ago">1h ago</string>
+    <string name="time_one_day_ago">1d ago</string>
+    <string name="time_hours_ago">%1$sh ago</string>
+    <string name="time_days_ago">%1$sd ago</string>
+    <string name="time_minutes_ago">%1$sm ago</string>
 </resources>
