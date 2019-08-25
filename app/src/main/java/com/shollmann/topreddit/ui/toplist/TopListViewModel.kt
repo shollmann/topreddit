@@ -31,11 +31,19 @@ internal class TopListViewModel : ViewModel() {
         }
     }
 
-    fun markAsRed(item: Post) {
+    fun markAsRed(post: Post) {
         if (readPosts.value == null) {
             readPosts.value = HashMap()
         }
 
-        readPosts.value?.put(item.name, true)
+        readPosts.value?.put(post.name, true)
+    }
+
+    fun dismissPost(position: Int) {
+        if (topPosts.value == null) {
+            return
+        }
+
+        (topPosts.value as ArrayList).removeAt(position)
     }
 }

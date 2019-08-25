@@ -3,8 +3,8 @@ package com.shollmann.topreddit.model
 data class Listing(val data: Data) {
     fun getPosts(): ArrayList<Post> {
         val listPost = arrayListOf<Post>()
-        for (c in data.children) {
-            listPost.add(c.data)
+        for (children in data.children) {
+            listPost.add(children.data)
         }
         return listPost
     }

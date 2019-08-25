@@ -50,11 +50,12 @@ class ItemListActivity : AppCompatActivity() {
     private fun displayPosts(it: List<Post>) {
         swipe_refresh_layout.isRefreshing = false
         val adapter = item_list.adapter as PostListAdapter
-        adapter.values = it
         if (viewmodel.readPosts.value != null) {
             adapter.readPosts = viewmodel.readPosts.value!!
         }
+        adapter.values = it
         adapter.notifyDataSetChanged()
+
     }
 
     private fun fetchPosts(viewmodel: TopListViewModel) {
@@ -63,7 +64,8 @@ class ItemListActivity : AppCompatActivity() {
         }
     }
 
-    fun markAsRed(item: Post) {
-        viewmodel.markAsRed(item)
+    fun markAsRed(post: Post) {
+        viewmodel.markAsRed(post)
     }
+
 }

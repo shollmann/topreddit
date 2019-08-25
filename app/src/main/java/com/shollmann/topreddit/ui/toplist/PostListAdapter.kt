@@ -82,7 +82,6 @@ class PostListAdapter(
                 setOnClickListener {
                     (values as ArrayList).removeAt(layoutPosition)
                     notifyItemRemoved(layoutPosition)
-                    notifyItemRangeChanged(layoutPosition, values.size)
                 }
             }
 

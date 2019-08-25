@@ -42,21 +42,26 @@ class ItemDetailFragment : Fragment() {
             rootView?.author_and_time?.text = getAuthorAndTimeAgo(post)
             rootView?.comments?.text = post?.numComments.toString()
             bindThumbnail(post)
+
             rootView?.thumbnail?.setOnClickListener {
-                try {
-                    startActivity(
-                        Intent(
-                            Intent.ACTION_VIEW,
-                            Uri.parse("http://www.reddit.com${post?.permalink}")
-                        )
-                    )
-                } catch (e: Exception) {
-                }
+                post?.permalink?.let { url -> openBrowser(url) }
             }
 
         }
 
         return rootView
+    }
+
+    private fun openBrowser(url: String) {
+        try {
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("http://www.reddit.com$url")
+                )
+            )
+        } catch (e: Exception) {
+        }
     }
 
     companion object {
