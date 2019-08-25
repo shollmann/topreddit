@@ -1,5 +1,7 @@
 package com.shollmann.topreddit.model
 
+import java.io.Serializable
+
 data class Post(
     val title: String,
     val permalink: String,
@@ -8,4 +10,4 @@ data class Post(
     val created_utc: Long,
     val thumbnail: String?,
     val name: String
-)
+): Serializable

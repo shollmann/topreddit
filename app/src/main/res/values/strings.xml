@@ -10,4 +10,5 @@
     <string name="time_hours_ago">%1$sh ago</string>
     <string name="time_days_ago">%1$sd ago</string>
     <string name="time_minutes_ago">%1$sm ago</string>
+    <string name="post_detail">Post Detail</string>
 </resources>

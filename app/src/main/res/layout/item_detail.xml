@@ -1,10 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/item_detail"
-    style="?android:attr/textAppearanceLarge"
+    android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    android:textIsSelectable="true"
-    tools:context=".ItemDetailFragment" />
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="18dp"
+        android:paddingBottom="8dp"
+        android:textColor="@color/dark_gray"
+        android:textSize="18sp"
+        tools:text="Protestors in Hong Kong are cutting down facial recognition towers." />
+
+    <ImageView
+        android:id="@+id/thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        tools:layout_height="120dp"
+        tools:layout_width="120dp"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/author_and_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="@color/light_gray"
+        android:textSize="14sp"
+        tools:text="By Jhonyq1988 3h ago" />
+
+    <TextView
+        android:id="@+id/comments"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:drawableStart="@drawable/ic_comment_black_24dp"
+        android:drawablePadding="8dp"
+        android:drawableTint="@color/light_gray"
+        android:gravity="center_vertical"
+        android:maxWidth="200dp"
+        android:padding="16dp"
+        android:textAllCaps="true"
+        android:textColor="@color/light_gray"
+        android:textSize="14sp"
+        tools:text="405" />
+
+
+</LinearLayout>

@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.shollmann.topreddit.ItemDetailActivity
-import com.shollmann.topreddit.ItemDetailFragment
 import com.shollmann.topreddit.R
 import com.shollmann.topreddit.model.Post
 import com.shollmann.topreddit.ui.utils.TimeUtils
@@ -29,7 +27,7 @@ class PostListAdapter(
             if (twoPane) {
                 val fragment = ItemDetailFragment().apply {
                     arguments = Bundle().apply {
-                        putString(ItemDetailFragment.ARG_ITEM_ID, item.title)
+                        putSerializable(ItemDetailFragment.ARG_POST, item)
                     }
                 }
                 parentActivity.supportFragmentManager
@@ -38,7 +36,9 @@ class PostListAdapter(
                     .commit()
             } else {
                 val intent = Intent(v.context, ItemDetailActivity::class.java).apply {
-                    putExtra(ItemDetailFragment.ARG_ITEM_ID, item.title)
+                    val bundle = Bundle()
+                    bundle.putSerializable(ItemDetailFragment.ARG_POST, item)
+                    putExtra(ItemDetailFragment.ARG_POST, bundle)
                 }
                 v.context.startActivity(intent)
             }
