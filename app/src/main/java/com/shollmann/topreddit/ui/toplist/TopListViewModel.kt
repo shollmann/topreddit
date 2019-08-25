@@ -11,6 +11,7 @@ import kotlinx.coroutines.withContext
 
 internal class TopListViewModel : ViewModel() {
     val topPosts = MutableLiveData<List<Post>>()
+    val readPosts = MutableLiveData<HashMap<String, Boolean>>()
 
     suspend fun loadTopPosts() {
         val result = getTopPost()
@@ -18,6 +19,9 @@ internal class TopListViewModel : ViewModel() {
 
         if (response != null) {
             topPosts.value = response.getPosts()
+            if (readPosts.value == null) {
+                readPosts.value = HashMap()
+            }
         }
     }
 
@@ -25,5 +29,13 @@ internal class TopListViewModel : ViewModel() {
         return withContext(Dispatchers.IO) {
             RedditRepository.getTop()
         }
+    }
+
+    fun markAsRed(item: Post) {
+        if (readPosts.value == null) {
+            readPosts.value = HashMap()
+        }
+
+        readPosts.value?.put(item.name, true)
     }
 }

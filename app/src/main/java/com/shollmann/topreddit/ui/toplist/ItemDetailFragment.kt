@@ -47,11 +47,10 @@ class ItemDetailFragment : Fragment() {
                     startActivity(
                         Intent(
                             Intent.ACTION_VIEW,
-                            Uri.parse("http://www.reddit.com+${post?.permalink}")
+                            Uri.parse("http://www.reddit.com${post?.permalink}")
                         )
                     )
                 } catch (e: Exception) {
-                    //TODO Show a log
                 }
             }
 

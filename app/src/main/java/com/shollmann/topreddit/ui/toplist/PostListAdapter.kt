@@ -15,34 +15,30 @@ import kotlinx.android.synthetic.main.post_list_item.view.*
 class PostListAdapter(
     private val parentActivity: ItemListActivity,
     var values: List<Post>,
+    var readPosts: HashMap<String, Boolean>,
     private val twoPane: Boolean
 ) :
     RecyclerView.Adapter<PostListAdapter.ViewHolder>() {
 
-    private val onClickListener: View.OnClickListener
+    private fun openPostDetailForPhone(v: View, item: Post) {
+        val intent = Intent(v.context, ItemDetailActivity::class.java).apply {
+            val bundle = Bundle()
+            bundle.putSerializable(ItemDetailFragment.ARG_POST, item)
+            putExtra(ItemDetailFragment.ARG_POST, bundle)
+        }
+        v.context.startActivity(intent)
+    }
 
-    init {
-        onClickListener = View.OnClickListener { v ->
-            val item = v.tag as Post
-            if (twoPane) {
-                val fragment = ItemDetailFragment().apply {
-                    arguments = Bundle().apply {
-                        putSerializable(ItemDetailFragment.ARG_POST, item)
-                    }
-                }
-                parentActivity.supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.item_detail_container, fragment)
-                    .commit()
-            } else {
-                val intent = Intent(v.context, ItemDetailActivity::class.java).apply {
-                    val bundle = Bundle()
-                    bundle.putSerializable(ItemDetailFragment.ARG_POST, item)
-                    putExtra(ItemDetailFragment.ARG_POST, bundle)
-                }
-                v.context.startActivity(intent)
+    private fun openPostDetailForTablet(item: Post) {
+        val fragment = ItemDetailFragment().apply {
+            arguments = Bundle().apply {
+                putSerializable(ItemDetailFragment.ARG_POST, item)
             }
         }
+        parentActivity.supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.item_detail_container, fragment)
+            .commit()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -68,8 +64,37 @@ class PostListAdapter(
 
             with(view.container) {
                 tag = post
-                setOnClickListener(onClickListener)
+                setOnClickListener {
+                    val item = view.tag as Post
+                    parentActivity.markAsRed(item)
+                    readPosts[item.name] = true
+                    notifyItemChanged(layoutPosition)
+
+                    if (twoPane) {
+                        openPostDetailForTablet(item)
+                    } else {
+                        openPostDetailForPhone(view, item)
+                    }
+                }
             }
+
+            with(view.dismiss) {
+                setOnClickListener {
+                    (values as ArrayList).removeAt(layoutPosition)
+                    notifyItemRemoved(layoutPosition)
+                    notifyItemRangeChanged(layoutPosition, values.size)
+                }
+            }
+
+            view.title.setTextColor(
+                view.context.getColor(
+                    if (readPosts.containsKey(post.name)) {
+                        R.color.light_gray
+                    } else {
+                        R.color.dark_gray
+                    }
+                )
+            )
         }
 
         private fun bindThumbnail(post: Post) {

@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 
 class ItemListActivity : AppCompatActivity() {
 
+    private lateinit var viewmodel: TopListViewModel
     private var twoPane: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +24,7 @@ class ItemListActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         toolbar.title = title
 
-        val viewmodel = ViewModelProviders.of(this)[TopListViewModel::class.java]
+        viewmodel = ViewModelProviders.of(this)[TopListViewModel::class.java]
         viewmodel.topPosts.observe(
             this,
             Observer {
@@ -39,7 +40,7 @@ class ItemListActivity : AppCompatActivity() {
             twoPane = true
         }
 
-        item_list.adapter = PostListAdapter(this, emptyList(), twoPane)
+        item_list.adapter = PostListAdapter(this, emptyList(), HashMap(), twoPane)
 
         swipe_refresh_layout.setOnRefreshListener {
             fetchPosts(viewmodel)
@@ -50,6 +51,9 @@ class ItemListActivity : AppCompatActivity() {
         swipe_refresh_layout.isRefreshing = false
         val adapter = item_list.adapter as PostListAdapter
         adapter.values = it
+        if (viewmodel.readPosts.value != null) {
+            adapter.readPosts = viewmodel.readPosts.value!!
+        }
         adapter.notifyDataSetChanged()
     }
 
@@ -57,5 +61,9 @@ class ItemListActivity : AppCompatActivity() {
         GlobalScope.launch(Dispatchers.Main) {
             viewmodel.loadTopPosts()
         }
+    }
+
+    fun markAsRed(item: Post) {
+        viewmodel.markAsRed(item)
     }
 }
