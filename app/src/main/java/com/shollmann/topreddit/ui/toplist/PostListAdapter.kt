@@ -13,7 +13,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.post_list_item.view.*
 
 class PostListAdapter(
-    private val parentActivity: ItemListActivity,
+    private val parentActivity: PostListActivity,
     var values: List<Post>,
     var readPosts: HashMap<String, Boolean>,
     private val twoPane: Boolean

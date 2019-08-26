@@ -13,6 +13,6 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         app:layoutManager="LinearLayoutManager"
-        tools:context=".ui.toplist.ItemListActivity"
+        tools:context=".ui.toplist.PostListActivity"
         tools:listitem="@layout/post_list_item" />
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

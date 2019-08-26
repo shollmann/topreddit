@@ -26,7 +26,6 @@ class ItemDetailFragment : Fragment() {
         arguments?.let {
             if (it.containsKey(ARG_POST)) {
                 post = it.getSerializable(ARG_POST) as Post?
-                activity?.toolbar_layout?.title = getString(R.string.post_detail)
             }
         }
     }

@@ -10,11 +10,11 @@
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
     android:showDividers="middle"
-    tools:context=".ui.toplist.ItemListActivity">
+    tools:context=".ui.toplist.PostListActivity">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/item_width"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -25,7 +25,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             app:layoutManager="LinearLayoutManager"
-            tools:context="com.shollmann.topreddit.ui.toplist.ItemListActivity"
+            tools:context="com.shollmann.topreddit.ui.toplist.PostListActivity"
             tools:listitem="@layout/post_list_item" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

@@ -15,7 +15,7 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name=".ui.toplist.ItemListActivity"
+            android:name=".ui.toplist.PostListActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -27,11 +27,11 @@
         <activity
             android:name=".ui.toplist.ItemDetailActivity"
             android:label="@string/title_item_detail"
-            android:parentActivityName=".ui.toplist.ItemListActivity"
+            android:parentActivityName=".ui.toplist.PostListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.shollmann.topreddit.ui.toplist.ItemListActivity" />
+                android:value="com.shollmann.topreddit.ui.toplist.PostListActivity" />
         </activity>
     </application>
 

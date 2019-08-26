@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class ItemListActivity : AppCompatActivity() {
+class PostListActivity : AppCompatActivity() {
 
     private lateinit var viewmodel: TopListViewModel
     private var twoPane: Boolean = false

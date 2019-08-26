@@ -11,9 +11,11 @@ class ItemDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_detail)
-        setSupportActionBar(detail_toolbar)
 
+        setSupportActionBar(detail_toolbar)
+        detail_toolbar?.title = getString(R.string.post_detail)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
 
         if (savedInstanceState == null) {
             val fragment = ItemDetailFragment().apply {
